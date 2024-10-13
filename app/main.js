@@ -1,20 +1,15 @@
 const express = require('express');
+require('dotenv').config(); // Load environment variables
+const itemRoutes = require('./routes/itemRoutes'); // Import the itemRoutes
+
 const app = express();
-const bodyParser = require('body-parser');
+app.use(express.json());
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: true }));
+// Use the item routes
+app.use('/items', itemRoutes);
 
-app.all("/", (req, res) => {
-    res.send({
-        "path" : req.path,
-        "method" : req.method,
-        "headers" : req.headers,
-        "args" : req.query,
-        "body" : req.body
-    });
-});
-
-app.listen(3000, () => {
-    console.log('Server started on port 3000');
+// Start the server
+const port = process.env.PORT || 3000;
+app.listen(port, () => {
+  console.log(`Server running on port ${port}`);
 });
