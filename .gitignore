@@ -1,6 +1,7 @@
-# Node modules
+# Node modules & upload folder
 node_modules/
 npm-debug.log*
+uploads/
 
 # Logs
 logs/
